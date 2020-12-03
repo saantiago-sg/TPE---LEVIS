@@ -1,66 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Levis</title>
-    <link rel="icon" href="../img/icoLevis.ico"> <!-- icono -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Levis</title>
+  <link rel="icon" href="../img/icoLevis.ico"> <!-- icono -->
 </head>
+
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bgr-cream">
-        <a class="navbar-brand" href="../index.html">
-          <img src="../img/logoLevis.png" width="50" height="30" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-          aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-    
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                aria-expanded="false">HOMBRE</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="remerasHombre.html">Remeras</a>
-                <a class="dropdown-item" href="buzosHombre.html">Buzos & Sweaters</a>
-                <a class="dropdown-item" href="pantalonesHombre.html">Jeans</a>
-            </li>
-    
-    
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                aria-expanded="false">MUJER</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="remerasMujer.html">Remeras</a>
-                <a class="dropdown-item" href="buzosMujer.html">Buzos & Sweaters</a>
-                <a class="dropdown-item" href="pantalonesMujer.html">Jeans</a>
-            </li>
-    
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="lookbook.html">LOOKBOOK 2020</a>
-            </li>
+  <nav class="navbar navbar-expand-lg navbar-light bgr-cream">
+    <a class="navbar-brand" href="../index.html">
+      <img src="../img/logoLevis.png" width="50" height="30" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link" href="precios.html">PRECIOS</a>
-            </li>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
-          </ul>
-    
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar">
-            <button class="btn bgr-red my-2 my-sm-0" type="submit">Buscar</button>
-          </form>
-        </div>
-    </nav>
-    <!--FIN DE NAV-->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">HOMBRE</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="remerasHombre.html">Remeras</a>
+            <a class="dropdown-item" href="buzosHombre.html">Buzos & Sweaters</a>
+            <a class="dropdown-item" href="pantalonesHombre.html">Jeans</a>
+        </li>
 
-    <div class="container d-flex justify-content-center">
-        <table  id="table" class="bg-table mt-2">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">MUJER</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="remerasMujer.html">Remeras</a>
+            <a class="dropdown-item" href="buzosMujer.html">Buzos & Sweaters</a>
+            <a class="dropdown-item" href="pantalonesMujer.html">Jeans</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="lookbook.html">LOOKBOOK 2020</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="precios.html">PRECIOS</a>
+        </li>
+
+      </ul>
+
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Buscar">
+        <button class="btn bgr-red my-2 my-sm-0" type="submit">Buscar</button>
+      </form>
+    </div>
+  </nav>
+  <!--FIN DE NAV-->
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12">
+
+        <table id="table" class="bg-table mt-2">
           <thead>
             <tr>
               <th>PRODUCTO</th>
@@ -74,12 +80,29 @@
           <tbody id="cuerpo">
             <!-- agrego desde js -->
           </tbody>
-
         </table>
+
+      </div>
     </div>
 
- <!--  FOOTER-->
- <div class="footer bgr-cream tCenter mt-4">
+    <div class="row mt-2">
+      <div class="col-12">
+        <h5>Agregar nuevo producto</h5>
+      </div>
+    </div>
+
+    <div class="row d-flex align-items-center">
+      <div class="col-2"><input type="text" id="inpProducto" placeholder="PRODUCTO"></div>
+      <div class="col-2"><input type="text" id="inpGenero" placeholder="GENERO"></div>
+      <div class="col-2"><input type="text" id="inpTalle" placeholder="TALLE"></div>
+      <div class="col-2"><input type="text" id="inpPrecio" placeholder="PRECIO"></div>
+      <div class="col-4"><button id="btnEnviar" class="btn btn-danger">ENVIAR</button></div>
+    </div>
+
+  </div>
+
+  <!--  FOOTER-->
+  <div class="footer bgr-cream tCenter mt-4">
     <div class="row">
       <div class="col-md-12">
         <div class="row mt-4">
@@ -109,8 +132,8 @@
     </div>
   </div>
 
-    <script src="../js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  <script src="../js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
   </script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
@@ -120,4 +143,5 @@
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
   </script>
 </body>
+
 </html>

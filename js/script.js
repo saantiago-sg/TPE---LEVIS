@@ -1,5 +1,4 @@
-let productos = [
-    {
+let productos = [{
         nombreProd: "Remera",
         genero: "Hombre",
         talle: "M",
@@ -37,32 +36,28 @@ let productos = [
     },
 ];
 
-window.addEventListener("load", () => {
-    actualizar();
-});
-
-
+// --- ACTUALIZAR TABLA ---
 const cuerpo = document.querySelector("#cuerpo");
-let actualizar = () => { 
+let actualizar = () => {
     cuerpo.innerHTML = "";
 
     productos.forEach((producto, index) => {
-        const tr = document.createElement("tr");    //declaro constante tr  /fila/
+        const tr = document.createElement("tr"); //declaro constante tr  /fila/
         tr.classList.add("bg-tr");
 
-        let tdNombre = document.createElement("td");    // nombre de producto   /contenido de fila/
+        let tdNombre = document.createElement("td"); // nombre de producto   /contenido de fila/
         tdNombre.textContent = producto.nombreProd;
         tr.appendChild(tdNombre);
-        
-        let tdGenero = document.createElement("td");    // genero
+
+        let tdGenero = document.createElement("td"); // genero
         tdGenero.textContent = producto.genero;
         tr.appendChild(tdGenero);
 
-        let tdTalle = document.createElement("td");    // talle
+        let tdTalle = document.createElement("td"); // talle
         tdTalle.textContent = producto.talle;
         tr.appendChild(tdTalle);
 
-        let tdPrecio = document.createElement("td");    // precio
+        let tdPrecio = document.createElement("td"); // precio
         tdPrecio.textContent = producto.precio;
         tr.appendChild(tdPrecio);
 
@@ -78,11 +73,39 @@ let actualizar = () => {
         tr.appendChild(eliminar);
 
         cuerpo.appendChild(tr);
-    })  
+    })
 }
 
-let eliminarProducto = index =>{    //recibo index por parametro
-   productos = productos.filter((productos, i) => i !== index);  // comparo que el index sea distinto que i
-   actualizar();
+// --- AGREGAR PRODUCTO ---
+let btnEnviar = document.querySelector("#btnEnviar");
+btnEnviar.addEventListener('click', () => {
+    let inpProducto = document.querySelector("#inpProducto").value;
+    let inpGenero = document.querySelector("#inpGenero").value;
+    let inpTalle = document.querySelector("#inpTalle").value;
+    let inpPrecio = document.querySelector("#inpPrecio").value;
+    let newProducto = { //creo el objeto
+        nombreProd: inpProducto,
+        genero: inpGenero,
+        talle: inpTalle,
+        precio: inpPrecio,
+    }
+    inpProducto.value = "";
+    inpGenero.value = "";
+    inpTalle.value = "";
+    inpPrecio.value = "";
+
+
+    productos.push(newProducto);
+    actualizar();
+})
+
+// --- ELIMINAR PRODUCTO ---
+let eliminarProducto = index => { //recibo index por parametro
+    productos = productos.filter((productos, i) => i !== index); // comparo que el index sea distinto que i
+    actualizar();
 }
 
+// ----------------------------------
+window.addEventListener("load", () => {
+    actualizar();
+});
