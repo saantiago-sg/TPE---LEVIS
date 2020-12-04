@@ -97,3 +97,56 @@ text-align: center;
 border-radius: 1rem;
 border: 1px black solid;
 }
+.col-form{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+.w-90{
+    width: 90%;
+}
+
+/* MODAL */
+.container-modal{
+    top: 25%;
+    display: none;
+    z-index: 10;
+    position: absolute;
+    background: black;
+    color: white;
+    border-radius: 1rem;
+    border: 5px solid rgb(170, 69, 69);
+    text-align: center;
+}
+.nav-pre{
+    height: 10vh;
+}
+.container-pre{
+    height: 62vh;
+}
+.footer-pre{
+    height: 24vh;
+}
+.close{
+    color: red;
+    background: white;
+}
+.close:focus{
+    outline: none;
+}
+
+/* .display-block{
+    display: block;
+}
+.display-none{
+    display: none;
+} */
+
+
+.ocultar {
+    visibility: collapse;
+}
+
+.mostrarFila {
+    display: table-row;
+}

@@ -63,9 +63,20 @@
 
   <div class="container">
 
-    <div class="row">
+    <div class="row mt-5 mb-5">
       <div class="col-12">
 
+        <div class="row">
+          <div class="col-12">
+            <nav class="navbar navbar-light bgr-cream justify-content-between">
+              <a class="navbar-brand">Buscar producto en la tabla</a>
+              <form class="form-inline">
+                <input id="inpFiltrar" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                <!-- <button id="btnFiltrar" class="btn btn bgr-red my-2 my-sm-0" type="submit">Buscar</button> -->
+              </form>
+            </nav>
+          </div>
+        </div>
         <table id="table" class="bg-table mt-2">
           <thead>
             <tr>
@@ -85,18 +96,32 @@
       </div>
     </div>
 
-    <div class="row mt-2">
-      <div class="col-12">
+    <div class="row mt-5">
+      <div class="col-12 mt-4">
         <h5>Agregar nuevo producto</h5>
       </div>
     </div>
 
-    <div class="row d-flex align-items-center">
-      <div class="col-2"><input type="text" id="inpProducto" placeholder="PRODUCTO"></div>
-      <div class="col-2"><input type="text" id="inpGenero" placeholder="GENERO"></div>
-      <div class="col-2"><input type="text" id="inpTalle" placeholder="TALLE"></div>
-      <div class="col-2"><input type="text" id="inpPrecio" placeholder="PRECIO"></div>
-      <div class="col-4"><button id="btnEnviar" class="btn btn-danger">ENVIAR</button></div>
+    <div class="row d-flex align-items-center mt-2">
+      <div class="col-form"><input class="w-90" type="text" id="inpProducto" placeholder="PRODUCTO"></div>
+      <div class="col-form"><input class="w-90" type="text" id="inpGenero" placeholder="GENERO"></div>
+      <div class="col-form"><input class="w-90" type="text" id="inpTalle" placeholder="TALLE"></div>
+      <div class="col-form"><input class="w-90" type="text" id="inpPrecio" placeholder="PRECIO"></div>
+      <div class="col-form"><button id="btnEnviar" class="btn w-75 btn-danger">AGREGAR</button></div>
+    </div>
+
+    <div class="modal-c d-flex justify-content-center align-items-center">
+
+     <div id="containerModal" class="container-modal w-50 h-50">
+       <button class="close mr-2 mt-2" id="btnClose">X</button>
+       <img src="../img/idea.png" class="mt-4" width="20%" alt="">
+       <h2>¿Usted desea continuar con la ejecución?</h2>
+       <div class="row d-flex justify-content-center align-items-center">
+        <button class="btn btn-success mr-1" id="btnAceptar">ACEPTAR</button> 
+        <button class="btn btn-danger ml-1" id="btnCancelar">CANCELAR</button>
+       </div>
+       
+     </div>
     </div>
 
   </div>
@@ -125,11 +150,11 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-12">
         <h6 class="centrarItem mt-2">&copy; By Santiago</h6>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <script src="../js/script.js"></script>

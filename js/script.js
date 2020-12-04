@@ -79,6 +79,11 @@ let actualizar = () => {
 // --- AGREGAR PRODUCTO ---
 let btnEnviar = document.querySelector("#btnEnviar");
 btnEnviar.addEventListener('click', () => {
+    containerMod.style.display = 'block';
+    btnClose.style.display = 'block';
+    btnAceptar.style.display = 'block';
+    btnCancelar.style.display = 'block';
+
     let inpProducto = document.querySelector("#inpProducto").value;
     let inpGenero = document.querySelector("#inpGenero").value;
     let inpTalle = document.querySelector("#inpTalle").value;
@@ -94,18 +99,80 @@ btnEnviar.addEventListener('click', () => {
     inpTalle.value = "";
     inpPrecio.value = "";
 
-
     productos.push(newProducto);
     actualizar();
 })
 
-// --- ELIMINAR PRODUCTO ---
-let eliminarProducto = index => { //recibo index por parametro
-    productos = productos.filter((productos, i) => i !== index); // comparo que el index sea distinto que i
-    actualizar();
-}
+
 
 // ----------------------------------
 window.addEventListener("load", () => {
     actualizar();
+});
+
+// --- ELIMINAR PRODUCTO ---
+let containerMod = document.querySelector("#containerModal");
+let btnClose = document.querySelector("#btnClose");
+let btnAceptar = document.querySelector("#btnAceptar");
+let btnCancelar = document.querySelector("#btnCancelar");
+
+
+let eliminarProducto = (index) => { //recibo index por parametro
+        // containerMod.classList.add("display-block");
+        containerMod.style.display = 'block';
+        btnClose.style.display = 'block';
+        btnAceptar.style.display = 'block';
+        btnCancelar.style.display = 'block';
+
+        productos = productos.filter((productos, i) => i !== index); // comparo que el index sea distinto que i
+        actualizar();
+}
+
+// --- MODAL ---
+
+btnClose.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    containerMod.style.display = 'none';
+    btnClose.style.display = 'none';
+})
+btnAceptar.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    containerMod.style.display = 'none';
+    btnAceptar.style.display = 'none';
+})
+
+btnCancelar.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    containerMod.style.display = 'none';
+    btnCancelar.style.display = 'none';
+})
+
+let filtrar = document.querySelector("#inpFiltrar");
+filtrar.addEventListener("keyup", (ev, cuerpo) => {
+    ev.preventDefault();
+    let inpFiltrar = document.querySelector("#inpFiltrar").value.toLowerCase();
+    let cuerpoTable = document.querySelector("#cuerpo");
+    for(let i = 0; i < cuerpoTable.childNodes.length; i++){
+    
+        let encontrar = false;
+        let tr = cuerpoTable.childNodes[i];
+        let td = tr.childNodes;
+        let valor = td[0].childNodes[0].nodeValue.toLowerCase();
+
+        if (valor.indexOf(inpFiltrar) >= 0) {
+            encontrar = true;
+        }
+        if (encontrar) {
+            tr.classList.add("mostrarFila");
+            tr.classList.remove("ocultar");
+        }
+        else {
+            tr.classList.add("ocultar");
+        }
+
+        if (inpFiltrar == "") {
+            tr.classList.remove("ocultar");
+        }
+
+    }
 });
