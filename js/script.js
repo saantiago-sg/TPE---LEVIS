@@ -90,11 +90,17 @@ window.addEventListener("load", () => {
 // --- AGREGAR PRODUCTO ---
 let btnEnviar = document.querySelector("#btnEnviar");
 btnEnviar.addEventListener('click', () => {
-    // containerMod.style.display = 'block';
-    // btnClose.style.display = 'block';
-    // btnAceptar.style.display = 'block';
-    // btnCancelar.style.display = 'block';
+    containerMod.style.display = 'block';
+    btnClose.style.display = 'block';
+    btnAceptar.style.display = 'block';
+    btnCancelar.style.display = 'block';
 
+    btnAceptar.addEventListener("click", addProductNew, {once : true});
+})
+
+function addProductNew(){
+    alert("e");
+    
     let inpProducto = document.querySelector("#inpProducto").value;
     let inpGenero = document.querySelector("#inpGenero").value;
     let inpTalle = document.querySelector("#inpTalle").value;
@@ -112,8 +118,8 @@ btnEnviar.addEventListener('click', () => {
 
     productos.push(newProducto);
     actualizar();
-})
-
+}
+// -------------------------
 
 
 // --- ELIMINAR PRODUCTO ---
@@ -151,7 +157,7 @@ function eliminar(){
     actualizar();
     }, 2000);
 }
-
+// -------------------------------
 
 
 //  --- EDITAR PRODUCTO ---
@@ -168,35 +174,36 @@ let editarProducto = (index) => {
 
     let guardar = document.querySelector("#save");  
     guardar.addEventListener("click", () => addProducto(index));
-
 }
 
 function addProducto(index){
-    // alert("e");
     containerMod.style.display = 'block';
     btnClose.style.display = 'block';
     btnAceptar.style.display = 'block';
     btnCancelar.style.display = 'block';
 
-    // let inpProducto = document.querySelector(".td0").value;
-    // let inpGenero = document.querySelector(".td1").value;
-    // let inpTalle = document.querySelector(".td2").value;
-    // let inpPrecio = document.querySelector(".td3").value;
-    // let newProducto = { //creo el objeto
-    //     nombreProd: inpProducto,
-    //     genero: inpGenero,
-    //     talle: inpTalle,
-    //     precio: inpPrecio,
-    // }
-    // inpProducto.value = "";
-    // inpGenero.value = "";
-    // inpTalle.value = "";
-    // inpPrecio.value = "";
-
-    // productos[index] = newProducto;
-    actualizar();
+    btnAceptar.addEventListener("click", () => addProducEdit(index), {once : true});
 }
 
+function addProducEdit(index){
+    let inpProducto = document.querySelector(".td0").value;
+    let inpGenero = document.querySelector(".td1").value;
+    let inpTalle = document.querySelector(".td2").value;
+    let inpPrecio = document.querySelector(".td3").value;
+    let newProducto = { //creo el objeto
+        nombreProd: inpProducto,
+        genero: inpGenero,
+        talle: inpTalle,
+        precio: inpPrecio,
+    }
+    inpProducto.value = "";
+    inpGenero.value = "";
+    inpTalle.value = "";
+    inpPrecio.value = "";
+
+    productos[index] = newProducto;
+    actualizar();
+}
 
 
 // --- MODAL ---
@@ -204,7 +211,6 @@ btnClose.addEventListener("click", (ev) => {
     ev.preventDefault();
     containerMod.style.display = 'none';
     // btnClose.style.display = 'none';
-console.log(ev);
 })
 
 btnAceptar.addEventListener("click", (ev) => {
