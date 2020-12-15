@@ -1,4 +1,5 @@
-let productos = [{
+let productos = [
+    {
         nombreProd: "Remera",
         genero: "Hombre",
         talle: "M",
@@ -60,29 +61,33 @@ let actualizar = () => {
         let tdPrecio = document.createElement("td"); // precio
         tdPrecio.textContent = producto.precio;
         tr.appendChild(tdPrecio);
-
+        
+        let tdEditar = document.createElement("td");
         let editar = document.createElement("button");
-        editar.innerHTML = "Editar";
         editar.classList.add("btn-editar");
-        tr.appendChild(editar);
+        editar.addEventListener('click', () => editarProducto(index));
+        tdEditar.appendChild(editar);
+        tr.appendChild(tdEditar);
 
+        let tdEliminar = document.createElement("td");
         let eliminar = document.createElement("button");
-        eliminar.innerHTML = "Borrar";
         eliminar.classList.add("btn-borrar");
         eliminar.addEventListener('click', () => eliminarProducto(index));
-        tr.appendChild(eliminar);
+        tdEliminar.appendChild(eliminar);
+        tr.appendChild(tdEliminar);
 
         cuerpo.appendChild(tr);
     })
 }
 
 // --- AGREGAR PRODUCTO ---
+
 let btnEnviar = document.querySelector("#btnEnviar");
 btnEnviar.addEventListener('click', () => {
-    containerMod.style.display = 'block';
-    btnClose.style.display = 'block';
-    btnAceptar.style.display = 'block';
-    btnCancelar.style.display = 'block';
+    // containerMod.style.display = 'block';
+    // btnClose.style.display = 'block';
+    // btnAceptar.style.display = 'block';
+    // btnCancelar.style.display = 'block';
 
     let inpProducto = document.querySelector("#inpProducto").value;
     let inpGenero = document.querySelector("#inpGenero").value;
@@ -116,37 +121,82 @@ let btnClose = document.querySelector("#btnClose");
 let btnAceptar = document.querySelector("#btnAceptar");
 let btnCancelar = document.querySelector("#btnCancelar");
 
-
 let eliminarProducto = (index) => { //recibo index por parametro
         // containerMod.classList.add("display-block");
         containerMod.style.display = 'block';
         btnClose.style.display = 'block';
         btnAceptar.style.display = 'block';
         btnCancelar.style.display = 'block';
-
         productos = productos.filter((productos, i) => i !== index); // comparo que el index sea distinto que i
         actualizar();
 }
+
+
+
+//  --- EDITAR PRODUCTO ---
+
+let editarProducto = (index) => {
+    let tbo = document.querySelector("#cuerpo");
+    let tr = tbo.childNodes;
+    let td = tr[index].childNodes;
+
+    for(let i = 0; i < 4; i++){
+        const element = td[i];
+        element.innerHTML = '<input type="text" class="form-control mb-2 mr-sm-2 td' + i + '"></input>'
+    }
+    td[5].innerHTML = "<button class='btn btn-save' id='save'>  </button>";
+
+    let guardar = document.querySelector("#save");  
+    guardar.addEventListener("click", () => addProducto(index));
+
+}
+
+
+function addProducto(index){
+    alert("ee");
+    let inpProducto = document.querySelector(".td0").value;
+    let inpGenero = document.querySelector(".td1").value;
+    let inpTalle = document.querySelector(".td2").value;
+    let inpPrecio = document.querySelector(".td3").value;
+    let newProducto = { //creo el objeto
+        nombreProd: inpProducto,
+        genero: inpGenero,
+        talle: inpTalle,
+        precio: inpPrecio,
+    }
+    inpProducto.value = "";
+    inpGenero.value = "";
+    inpTalle.value = "";
+    inpPrecio.value = "";
+
+    productos[index] = newProducto;
+    actualizar();
+}
+
 
 // --- MODAL ---
 
 btnClose.addEventListener("click", (ev) => {
     ev.preventDefault();
-    containerMod.style.display = 'none';
+    // containerMod.style.display = 'none';
     btnClose.style.display = 'none';
 })
 btnAceptar.addEventListener("click", (ev) => {
     ev.preventDefault();
-    containerMod.style.display = 'none';
+    // containerMod.style.display = 'none';
     btnAceptar.style.display = 'none';
 })
 
 btnCancelar.addEventListener("click", (ev) => {
     ev.preventDefault();
-    containerMod.style.display = 'none';
+    // containerMod.style.display = 'none';
     btnCancelar.style.display = 'none';
 })
 
+
+
+
+// ---  FILTRAR ----
 let filtrar = document.querySelector("#inpFiltrar");
 filtrar.addEventListener("keyup", (ev, cuerpo) => {
     ev.preventDefault();
@@ -173,6 +223,6 @@ filtrar.addEventListener("keyup", (ev, cuerpo) => {
         if (inpFiltrar == "") {
             tr.classList.remove("ocultar");
         }
-
     }
 });
+
