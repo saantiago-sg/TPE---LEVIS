@@ -132,10 +132,11 @@ border: none;
 }
 
 /* MODAL */
+
 .container-modal{
     top: 25%;
     display: none;
-    z-index: 10;
+    z-index: 99;
     position: absolute;
     background: black;
     color: white;
@@ -174,4 +175,47 @@ border: none;
 
 .mostrarFila {
     display: table-row;
+}
+
+
+
+/* SPINNER */
+#fondo{
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* visibility: hidden; */
+    display: none;
+    filter:brightness(0.7);
+  }
+  /* #contentLoad{
+      background-color: aquamarine;
+      height: 100%;
+      width: 100%;
+      } */
+#load{
+    border: 15px solid rgba(245, 245, 125, 0.829);
+    border-top-color: rgb(255, 0, 0);
+    border-bottom-color: rgb(255, 0, 0);
+    border-top-style: groove;
+    border-bottom-style: groove;
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+  
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    animation: girar 1.3s linear infinite;
+}
+@keyframes girar{
+    from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
 }

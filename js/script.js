@@ -80,8 +80,14 @@ let actualizar = () => {
     })
 }
 
-// --- AGREGAR PRODUCTO ---
+// ----------------------------------
+window.addEventListener("load", () => {
+    actualizar();
+});
 
+
+
+// --- AGREGAR PRODUCTO ---
 let btnEnviar = document.querySelector("#btnEnviar");
 btnEnviar.addEventListener('click', () => {
     // containerMod.style.display = 'block';
@@ -110,31 +116,45 @@ btnEnviar.addEventListener('click', () => {
 
 
 
-// ----------------------------------
-window.addEventListener("load", () => {
-    actualizar();
-});
-
 // --- ELIMINAR PRODUCTO ---
+let indexEli;
+
 let containerMod = document.querySelector("#containerModal");
 let btnClose = document.querySelector("#btnClose");
 let btnAceptar = document.querySelector("#btnAceptar");
 let btnCancelar = document.querySelector("#btnCancelar");
 
 let eliminarProducto = (index) => { //recibo index por parametro
-        // containerMod.classList.add("display-block");
         containerMod.style.display = 'block';
         btnClose.style.display = 'block';
         btnAceptar.style.display = 'block';
         btnCancelar.style.display = 'block';
-        productos = productos.filter((productos, i) => i !== index); // comparo que el index sea distinto que i
-        actualizar();
+
+        indexEli = index;
+        let valor = false;
+        if(btnAceptar.addEventListener("click", eliminar,{once : true})){
+            valor = true;
+        }else{
+            valor = false;
+        }
+}
+
+function eliminar(){
+    let fondo = document.getElementById("fondo");
+    setTimeout(function(){
+    fondo.style.display = "block";
+    }, 0);
+
+    setTimeout(function(){
+    fondo.style.display = "none";
+    productos = productos.filter((productos, i) =>  i !== indexEli);     // comparo que el index sea distinto que i
+    actualizar();
+    }, 2000);
 }
 
 
 
 //  --- EDITAR PRODUCTO ---
-
 let editarProducto = (index) => {
     let tbo = document.querySelector("#cuerpo");
     let tr = tbo.childNodes;
@@ -151,46 +171,52 @@ let editarProducto = (index) => {
 
 }
 
-
 function addProducto(index){
-    alert("ee");
-    let inpProducto = document.querySelector(".td0").value;
-    let inpGenero = document.querySelector(".td1").value;
-    let inpTalle = document.querySelector(".td2").value;
-    let inpPrecio = document.querySelector(".td3").value;
-    let newProducto = { //creo el objeto
-        nombreProd: inpProducto,
-        genero: inpGenero,
-        talle: inpTalle,
-        precio: inpPrecio,
-    }
-    inpProducto.value = "";
-    inpGenero.value = "";
-    inpTalle.value = "";
-    inpPrecio.value = "";
+    // alert("e");
+    containerMod.style.display = 'block';
+    btnClose.style.display = 'block';
+    btnAceptar.style.display = 'block';
+    btnCancelar.style.display = 'block';
 
-    productos[index] = newProducto;
+    // let inpProducto = document.querySelector(".td0").value;
+    // let inpGenero = document.querySelector(".td1").value;
+    // let inpTalle = document.querySelector(".td2").value;
+    // let inpPrecio = document.querySelector(".td3").value;
+    // let newProducto = { //creo el objeto
+    //     nombreProd: inpProducto,
+    //     genero: inpGenero,
+    //     talle: inpTalle,
+    //     precio: inpPrecio,
+    // }
+    // inpProducto.value = "";
+    // inpGenero.value = "";
+    // inpTalle.value = "";
+    // inpPrecio.value = "";
+
+    // productos[index] = newProducto;
     actualizar();
 }
 
 
-// --- MODAL ---
 
+// --- MODAL ---
 btnClose.addEventListener("click", (ev) => {
     ev.preventDefault();
-    // containerMod.style.display = 'none';
-    btnClose.style.display = 'none';
+    containerMod.style.display = 'none';
+    // btnClose.style.display = 'none';
+console.log(ev);
 })
+
 btnAceptar.addEventListener("click", (ev) => {
     ev.preventDefault();
-    // containerMod.style.display = 'none';
-    btnAceptar.style.display = 'none';
+    containerMod.style.display = 'none';
+    // btnAceptar.style.display = 'none';
 })
 
 btnCancelar.addEventListener("click", (ev) => {
     ev.preventDefault();
-    // containerMod.style.display = 'none';
-    btnCancelar.style.display = 'none';
+    containerMod.style.display = 'none';
+    // btnCancelar.style.display = 'none';
 })
 
 
