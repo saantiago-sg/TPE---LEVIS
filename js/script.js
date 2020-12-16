@@ -1,5 +1,4 @@
-let productos = [
-    {
+let productos = [{
         nombreProd: "Remera",
         genero: "Hombre",
         talle: "M",
@@ -61,7 +60,7 @@ let actualizar = () => {
         let tdPrecio = document.createElement("td"); // precio
         tdPrecio.textContent = producto.precio;
         tr.appendChild(tdPrecio);
-        
+
         let tdEditar = document.createElement("td");
         let editar = document.createElement("button");
         editar.classList.add("btn-editar");
@@ -80,10 +79,12 @@ let actualizar = () => {
     })
 }
 
-// ----------------------------------
 window.addEventListener("load", () => {
     actualizar();
 });
+// ---  FIN ACTUALIZAR TABLA  ---
+
+
 
 
 
@@ -95,30 +96,32 @@ btnEnviar.addEventListener('click', () => {
     btnAceptar.style.display = 'block';
     btnCancelar.style.display = 'block';
 
-  
-    btnAceptar.addEventListener("click", addProductNew, {once : true});
+
+    btnAceptar.addEventListener("click", addProductNew, {
+        once: true
+    });
 })
 
-function addProductNew(){
+function addProductNew() {
 
     let inpProducto = document.querySelector("#inpProducto").value;
     let inpGenero = document.querySelector("#inpGenero").value;
     let inpTalle = document.querySelector("#inpTalle").value;
     let inpPrecio = document.querySelector("#inpPrecio").value;
 
-    if((inpProducto.length == 0) || (inpGenero.length == 0) || (inpTalle.length == 0) || (inpPrecio.length == 0)){
+    if ((inpProducto.length == 0) || (inpGenero.length == 0) || (inpTalle.length == 0) || (inpPrecio.length == 0)) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Rellenar todos los campos sugeridos!',
             footer: '<a href>Ayuda</a>'
-          })
-    }else{
+        })
+    } else {
         let fondo = document.getElementById("fondo");
-        setTimeout(function(){
-        fondo.style.display = "block";
+        setTimeout(function () {
+            fondo.style.display = "block";
         }, 0);
-    
+
         let newProducto = { //creo el objeto
             nombreProd: inpProducto,
             genero: inpGenero,
@@ -129,17 +132,17 @@ function addProductNew(){
         inpGenero.value = "";
         inpTalle.value = "";
         inpPrecio.value = "";
-    
-        setTimeout(function(){
+
+        setTimeout(function () {
             fondo.style.display = "none";
             productos.push(newProducto);
-        actualizar();
-            }, 2000);
+            actualizar();
+        }, 2000);
     }
 }
 
 
-// -------------------------
+// ---  FIN AGREGAR PRODUCTO  ---
 
 
 // --- ELIMINAR PRODUCTO ---
@@ -151,33 +154,35 @@ let btnAceptar = document.querySelector("#btnAceptar");
 let btnCancelar = document.querySelector("#btnCancelar");
 
 let eliminarProducto = (index) => { //recibo index por parametro
-        containerMod.style.display = 'block';
-        btnClose.style.display = 'block';
-        btnAceptar.style.display = 'block';
-        btnCancelar.style.display = 'block';
+    containerMod.style.display = 'block';
+    btnClose.style.display = 'block';
+    btnAceptar.style.display = 'block';
+    btnCancelar.style.display = 'block';
 
-        indexEli = index;
-        let valor = false;
-        if(btnAceptar.addEventListener("click", eliminar,{once : true})){
-            valor = true;
-        }else{
-            valor = false;
-        }
+    indexEli = index;
+    let valor = false;
+    if (btnAceptar.addEventListener("click", eliminar, {
+            once: true
+        })) {
+        valor = true;
+    } else {
+        valor = false;
+    }
 }
 
-function eliminar(){
+function eliminar() {
     let fondo = document.getElementById("fondo");
-    setTimeout(function(){
-    fondo.style.display = "block";
+    setTimeout(function () {
+        fondo.style.display = "block";
     }, 0);
 
-    setTimeout(function(){
-    fondo.style.display = "none";
-    productos = productos.filter((productos, i) =>  i !== indexEli);     // comparo que el index sea distinto que i
-    actualizar();
+    setTimeout(function () {
+        fondo.style.display = "none";
+        productos = productos.filter((productos, i) => i !== indexEli); // comparo que el index sea distinto que i
+        actualizar();
     }, 2000);
 }
-// -------------------------------
+// ---  FIN ELIMINAR PRODUCTO  ---
 
 
 //  --- EDITAR PRODUCTO ---
@@ -186,42 +191,44 @@ let editarProducto = (index) => {
     let tr = tbo.childNodes;
     let td = tr[index].childNodes;
 
-    for(let i = 0; i < 4; i++){
+    for (let i = 0; i < 4; i++) {
         const element = td[i];
         element.innerHTML = '<input type="text" placeholder="Ingrese valor"  class="form-control mb-2 mr-sm-2 td' + i + '"></input>'
     }
     td[5].innerHTML = "<button class='btn btn-save' id='save'>  </button>";
 
-    let guardar = document.querySelector("#save");  
+    let guardar = document.querySelector("#save");
     guardar.addEventListener("click", () => addProducto(index));
 }
 
-function addProducto(index){
+function addProducto(index) {
     containerMod.style.display = 'block';
     btnClose.style.display = 'block';
     btnAceptar.style.display = 'block';
     btnCancelar.style.display = 'block';
 
-    btnAceptar.addEventListener("click", () => addProducEdit(index), {once : true});
+    btnAceptar.addEventListener("click", () => addProducEdit(index), {
+        once: true
+    });
 }
 
-function addProducEdit(index){
+function addProducEdit(index) {
     let inpProducto = document.querySelector(".td0").value;
     let inpGenero = document.querySelector(".td1").value;
     let inpTalle = document.querySelector(".td2").value;
     let inpPrecio = document.querySelector(".td3").value;
-  
-    if((inpProducto.length == 0) || (inpGenero.length == 0) || (inpTalle.length == 0) || (inpPrecio.length == 0)){
+
+    if ((inpProducto.length == 0) || (inpGenero.length == 0) || (inpTalle.length == 0) || (inpPrecio.length == 0)) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Rellenar todos los campos sugeridos!',
             footer: '<a href>Ayuda</a>'
-          })
-    }else{
+        })
+    } else {
         let fondo = document.getElementById("fondo");
-        setTimeout(function(){
-        fondo.style.display = "block";
+        setTimeout(function () {
+            fondo.style.display = "block";
         }, 0);
 
         let newProducto = { //creo el objeto
@@ -234,19 +241,49 @@ function addProducEdit(index){
         inpGenero.value = "";
         inpTalle.value = "";
         inpPrecio.value = "";
-    
-        setTimeout(function(){
+
+        setTimeout(function () {
             fondo.style.display = "none";
             productos[index] = newProducto;
             actualizar();
-            }, 2000);
+        }, 2000);
     }
-
-  
 }
+// ---  FIN EDITAR PRODUCTO  ---
 
 
-// --- MODAL ---
+
+// ---  FILTRAR ----
+let filtrar = document.querySelector("#inpFiltrar");
+filtrar.addEventListener("keyup", (ev, cuerpo) => {
+    ev.preventDefault();
+    let inpFiltrar = document.querySelector("#inpFiltrar").value.toLowerCase();
+    let cuerpoTable = document.querySelector("#cuerpo");
+    for (let i = 0; i < cuerpoTable.childNodes.length; i++) {
+
+        let encontrar = false;
+        let tr = cuerpoTable.childNodes[i];
+        let td = tr.childNodes;
+        let valor = td[0].childNodes[0].nodeValue.toLowerCase();
+
+        if (valor.indexOf(inpFiltrar) >= 0) {
+            encontrar = true;
+        }
+        if (encontrar) {
+            tr.classList.add("mostrarFila");
+            tr.classList.remove("ocultar");
+        } else {
+            tr.classList.add("ocultar");
+        }
+        if (inpFiltrar == "") {
+            tr.classList.remove("ocultar");
+        }
+    }
+});
+// ---  FIN FILTRAR  ---
+
+
+// --- LISTENER DE MODALES ---
 btnClose.addEventListener("click", (ev) => {
     ev.preventDefault();
     containerMod.style.display = 'none';
@@ -264,37 +301,3 @@ btnCancelar.addEventListener("click", (ev) => {
     containerMod.style.display = 'none';
     // btnCancelar.style.display = 'none';
 })
-
-
-
-
-// ---  FILTRAR ----
-let filtrar = document.querySelector("#inpFiltrar");
-filtrar.addEventListener("keyup", (ev, cuerpo) => {
-    ev.preventDefault();
-    let inpFiltrar = document.querySelector("#inpFiltrar").value.toLowerCase();
-    let cuerpoTable = document.querySelector("#cuerpo");
-    for(let i = 0; i < cuerpoTable.childNodes.length; i++){
-    
-        let encontrar = false;
-        let tr = cuerpoTable.childNodes[i];
-        let td = tr.childNodes;
-        let valor = td[0].childNodes[0].nodeValue.toLowerCase();
-
-        if (valor.indexOf(inpFiltrar) >= 0) {
-            encontrar = true;
-        }
-        if (encontrar) {
-            tr.classList.add("mostrarFila");
-            tr.classList.remove("ocultar");
-        }
-        else {
-            tr.classList.add("ocultar");
-        }
-
-        if (inpFiltrar == "") {
-            tr.classList.remove("ocultar");
-        }
-    }
-});
-
