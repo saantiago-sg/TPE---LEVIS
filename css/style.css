@@ -25,6 +25,8 @@ body {
 }
 
 .centrarItem {
+    position: relative;
+    bottom: 1rem;
     justify-content: center;
 }
 
@@ -134,10 +136,11 @@ border: none;
 /* MODAL */
 
 .container-modal{
-    top: 25%;
     display: none;
-    z-index: 99;
-    position: absolute;
+    top: 25%;
+    left: 25%;
+    z-index: 100;
+    position: fixed;
     background: black;
     color: white;
     border-radius: 1rem;
@@ -177,6 +180,23 @@ border: none;
     display: table-row;
 }
 
+.row-tittle{
+    position: relative;
+    top: -4rem;
+}
+.row-add{
+    position: relative;
+    top: -4.5rem;
+}
+th{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.ajustar-lupa{
+    position: absolute;
+    right: 2rem;
+}
 
 
 /* SPINNER */

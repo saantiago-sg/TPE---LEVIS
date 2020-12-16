@@ -95,30 +95,50 @@ btnEnviar.addEventListener('click', () => {
     btnAceptar.style.display = 'block';
     btnCancelar.style.display = 'block';
 
+  
     btnAceptar.addEventListener("click", addProductNew, {once : true});
 })
 
 function addProductNew(){
-    alert("e");
-    
+
     let inpProducto = document.querySelector("#inpProducto").value;
     let inpGenero = document.querySelector("#inpGenero").value;
     let inpTalle = document.querySelector("#inpTalle").value;
     let inpPrecio = document.querySelector("#inpPrecio").value;
-    let newProducto = { //creo el objeto
-        nombreProd: inpProducto,
-        genero: inpGenero,
-        talle: inpTalle,
-        precio: inpPrecio,
-    }
-    inpProducto.value = "";
-    inpGenero.value = "";
-    inpTalle.value = "";
-    inpPrecio.value = "";
 
-    productos.push(newProducto);
-    actualizar();
+    if((inpProducto.length == 0) || (inpGenero.length == 0) || (inpTalle.length == 0) || (inpPrecio.length == 0)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Rellenar todos los campos sugeridos!',
+            footer: '<a href>Ayuda</a>'
+          })
+    }else{
+        let fondo = document.getElementById("fondo");
+        setTimeout(function(){
+        fondo.style.display = "block";
+        }, 0);
+    
+        let newProducto = { //creo el objeto
+            nombreProd: inpProducto,
+            genero: inpGenero,
+            talle: inpTalle,
+            precio: inpPrecio,
+        }
+        inpProducto.value = "";
+        inpGenero.value = "";
+        inpTalle.value = "";
+        inpPrecio.value = "";
+    
+        setTimeout(function(){
+            fondo.style.display = "none";
+            productos.push(newProducto);
+        actualizar();
+            }, 2000);
+    }
 }
+
+
 // -------------------------
 
 
@@ -168,7 +188,7 @@ let editarProducto = (index) => {
 
     for(let i = 0; i < 4; i++){
         const element = td[i];
-        element.innerHTML = '<input type="text" class="form-control mb-2 mr-sm-2 td' + i + '"></input>'
+        element.innerHTML = '<input type="text" placeholder="Ingrese valor"  class="form-control mb-2 mr-sm-2 td' + i + '"></input>'
     }
     td[5].innerHTML = "<button class='btn btn-save' id='save'>  </button>";
 
@@ -190,19 +210,39 @@ function addProducEdit(index){
     let inpGenero = document.querySelector(".td1").value;
     let inpTalle = document.querySelector(".td2").value;
     let inpPrecio = document.querySelector(".td3").value;
-    let newProducto = { //creo el objeto
-        nombreProd: inpProducto,
-        genero: inpGenero,
-        talle: inpTalle,
-        precio: inpPrecio,
-    }
-    inpProducto.value = "";
-    inpGenero.value = "";
-    inpTalle.value = "";
-    inpPrecio.value = "";
+  
+    if((inpProducto.length == 0) || (inpGenero.length == 0) || (inpTalle.length == 0) || (inpPrecio.length == 0)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Rellenar todos los campos sugeridos!',
+            footer: '<a href>Ayuda</a>'
+          })
+    }else{
+        let fondo = document.getElementById("fondo");
+        setTimeout(function(){
+        fondo.style.display = "block";
+        }, 0);
 
-    productos[index] = newProducto;
-    actualizar();
+        let newProducto = { //creo el objeto
+            nombreProd: inpProducto,
+            genero: inpGenero,
+            talle: inpTalle,
+            precio: inpPrecio,
+        }
+        inpProducto.value = "";
+        inpGenero.value = "";
+        inpTalle.value = "";
+        inpPrecio.value = "";
+    
+        setTimeout(function(){
+            fondo.style.display = "none";
+            productos[index] = newProducto;
+            actualizar();
+            }, 2000);
+    }
+
+  
 }
 
 
